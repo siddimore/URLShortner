@@ -12,7 +12,6 @@ contract URLShortner {
   
   // User to Shortened Hash mapping
   mapping (address => bytes[]) public shortenedURLs;
-  address[] accts;
   address payable owner;
   
   // URL Shortened event
