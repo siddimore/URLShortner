@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
 contract URLShortner {
@@ -46,8 +47,22 @@ contract URLShortner {
   }
 
   // Kill Contract
-  function kill() public {
+  function kill() 
+    public
+    onlyOwner
+  {
     if (msg.sender == owner) selfdestruct(owner);
+  }
+  
+  // Modifier to check that the caller is the owner of
+  // the contract.
+  modifier onlyOwner() 
+  {
+    require(msg.sender == owner, "Not owner");
+    // Underscore is a special character only used inside
+    // a function modifier and it tells Solidity to
+    // execute the rest of the code.
+    _;
   }
 
   // private method to generate hash
